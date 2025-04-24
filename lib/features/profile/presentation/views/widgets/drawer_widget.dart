@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hotel_app/features/profile/presentation/extension/space_extension.dart';
@@ -36,7 +37,28 @@ class DrawerWidget extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CircleAvatar(child: Icon(Icons.person), radius: 30),
+                        Row(
+                          children: [
+                            CircleAvatar(child: Icon(Icons.person), radius: 30),
+                            SizedBox(width: 150),
+                            IconButton(
+                              onPressed: () {
+                                if (AdaptiveTheme.of(context).mode ==
+                                    AdaptiveThemeMode.light) {
+                                  AdaptiveTheme.of(context).setDark();
+                                } else {
+                                  AdaptiveTheme.of(context).setLight();
+                                }
+                              },
+                              icon: Icon(
+                                AdaptiveTheme.of(context).mode ==
+                                        AdaptiveThemeMode.light
+                                    ? Icons.dark_mode
+                                    : Icons.light_mode,
+                              ),
+                            ),
+                          ],
+                        ),
                         15.h,
                         Text(user.firstName),
                         Text(user.login, style: TextStyle(fontSize: 10)),

@@ -13,12 +13,10 @@ class FilterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         title: TextItem(
           text: "filter".tr(context: context),
-          color: Colors.black,
           fontSize: 28,
           fontWeight: FontWeight.w700,
         ),
@@ -32,14 +30,12 @@ class FilterScreen extends StatelessWidget {
           children: [
             TextItem(
               text: "facilities".tr(context: context),
-              color: Colors.black,
               fontSize: 20,
               fontWeight: FontWeight.w900,
             ),
             FilterFacilities(),
             TextItem(
               text: "rating".tr(context: context),
-              color: Colors.black,
               fontSize: 20,
               fontWeight: FontWeight.w900,
             ),
@@ -56,7 +52,6 @@ class FilterScreen extends StatelessWidget {
                           index < value.selectRating
                               ? Icons.star
                               : Icons.star_border,
-                          color: Colors.black,
                           size: 25,
                         ),
                       ),
@@ -65,7 +60,6 @@ class FilterScreen extends StatelessWidget {
             ),
             TextItem(
               text: "price_range".tr(context: context),
-              color: Colors.black,
               fontSize: 20,
               fontWeight: FontWeight.w900,
             ),

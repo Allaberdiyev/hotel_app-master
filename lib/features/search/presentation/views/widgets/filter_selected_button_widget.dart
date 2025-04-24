@@ -24,25 +24,24 @@ class FilterSelectedButtonWidget extends StatelessWidget {
         children: [
           Container(
             width: 100,
-            height: 40,
+            height: 50,
+            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
             decoration: BoxDecoration(
-              color: Colors.grey.shade200,
+              border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(5),
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 5,
-                  color: Colors.black.withValues(alpha: 0.2),
-                  offset: Offset(1, 2),
-                  blurStyle: BlurStyle.inner,
-                ),
-              ],
+              // boxShadow: [
+              //   BoxShadow(
+              //     blurRadius: 5,
+              //     offset: Offset(1, 2),
+              //     blurStyle: BlurStyle.inner,
+              //   ),
+              // ],
             ),
             alignment: Alignment.center,
             child: TextItem(
               text: text,
-              color: Colors.black,
               fontWeight: FontWeight.w700,
-              fontSize: 16,
+              fontSize: 10,
             ),
           ),
           isSelected == true

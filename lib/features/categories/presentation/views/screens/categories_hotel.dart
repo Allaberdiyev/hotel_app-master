@@ -6,7 +6,6 @@ import 'package:hotel_app/features/search/data/models/hotel_model.dart';
 import 'package:hotel_app/features/categories/presentation/views/screens/category_info_hotel.dart';
 import 'package:hotel_app/features/search/presentation/views/widgets/carousel_slider_widget.dart';
 import 'package:hotel_app/features/search/presentation/views/widgets/search_delegate.dart';
-// import 'package:hotel_app/features/profile/presentation/views/screens/drawer_widget.dart';
 
 class CategoriesHotel extends StatefulWidget {
   const CategoriesHotel({super.key});
@@ -89,8 +88,8 @@ class _CategoriesHotelState extends State<CategoriesHotel> {
                       child: Container(
                         padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
-                          color: Colors.white,
                           borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: Colors.white),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withAlpha(70),

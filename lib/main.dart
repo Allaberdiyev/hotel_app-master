@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:hotel_app/core/providers/providers.dart';
 import 'package:hotel_app/core/router/router.dart';
@@ -22,26 +23,41 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  ThemeMode _themeMode = ThemeMode.light;
+
+  void changeTheme() {
+    setState(() {
+      _themeMode =
+          _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        pageTransitionsTheme: PageTransitionsTheme(
-          builders: Map<TargetPlatform, PageTransitionsBuilder>.fromIterable(
-            TargetPlatform.values,
-            value: (_) => FadeForwardsPageTransitionsBuilder(),
-          ),
-        ),
-      ),
-      initialRoute: AppRoutes.login,
-      routes: AppRouter.appRoutes,
+    return AdaptiveTheme(
+      initial: AdaptiveThemeMode.light,
+      light: ThemeData(brightness: Brightness.light),
+      dark: ThemeData(brightness: Brightness.dark),
+      builder: (light, dark) {
+        return MaterialApp(
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          debugShowCheckedModeBanner: false,
+          theme: light,
+          darkTheme: dark,
+          initialRoute: AppRoutes.login,
+          routes: AppRouter.appRoutes,
+        );
+      },
     );
   }
 }

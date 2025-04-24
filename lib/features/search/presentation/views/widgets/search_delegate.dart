@@ -18,7 +18,7 @@ class SearchViewDelegate extends SearchDelegate<HotelModel> {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear, color: Colors.black),
+        icon: Icon(Icons.clear),
         onPressed: () {
           query = '';
         },
@@ -27,7 +27,7 @@ class SearchViewDelegate extends SearchDelegate<HotelModel> {
         onPressed: () {
           Navigator.pushNamed(context, AppRoutes.filter);
         },
-        icon: Icon(Icons.filter_list, color: Colors.black),
+        icon: Icon(Icons.filter_list),
       ),
     ];
   }
@@ -35,7 +35,7 @@ class SearchViewDelegate extends SearchDelegate<HotelModel> {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back, color: Colors.black),
+      icon: Icon(Icons.arrow_back),
       onPressed: () {
         close(
           context,
@@ -128,7 +128,7 @@ class SearchViewDelegate extends SearchDelegate<HotelModel> {
               width: double.infinity,
               height: 80,
               decoration: BoxDecoration(
-                color: Colors.grey.shade100,
+                border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
                 boxShadow: [
                   BoxShadow(
@@ -153,11 +153,11 @@ class SearchViewDelegate extends SearchDelegate<HotelModel> {
                         children: [
                           TextItem(
                             text: hotel.name,
-                            fontSize: 16,
                             fontWeight: FontWeight.w700,
                           ),
                           TextItem(
                             text: hotel.address,
+                            fontSize: 12,
                             fontWeight: FontWeight.w500,
                           ),
                         ],
@@ -172,9 +172,11 @@ class SearchViewDelegate extends SearchDelegate<HotelModel> {
               top: 10,
               child: Container(
                 margin: EdgeInsets.all(0),
+
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 height: 30,
                 decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
                   color: Colors.black,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(5),

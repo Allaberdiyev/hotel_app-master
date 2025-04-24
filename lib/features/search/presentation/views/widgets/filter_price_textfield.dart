@@ -124,11 +124,8 @@ class _EnterOrClean extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconButton(color: Colors.black, onPressed: onPressed, icon: Icon(icon)),
-        Text(
-          text,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700),
-        ),
+        IconButton(onPressed: onPressed, icon: Icon(icon)),
+        Text(text, style: TextStyle(fontWeight: FontWeight.w700)),
       ],
     );
   }

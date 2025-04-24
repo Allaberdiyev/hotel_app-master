@@ -61,7 +61,6 @@ class _CategoryInfoHotelState extends State<CategoryInfoHotel> {
     final hasReviewed = reviewHotels[hotel.id] ?? false;
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -86,7 +85,6 @@ class _CategoryInfoHotelState extends State<CategoryInfoHotel> {
               padding: EdgeInsets.all(16.0),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xFFF4F3F3),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Padding(
@@ -114,7 +112,7 @@ class _CategoryInfoHotelState extends State<CategoryInfoHotel> {
                         ),
                       ),
                       Text(
-                        " ${'rating'.tr(context: context)}: ${hotel.rating.toStringAsFixed(1)} ⭐",
+                        "${'rating'.tr(context: context)}: ${hotel.rating.toStringAsFixed(1)} ⭐",
                         style: TextStyle(fontWeight: FontWeight.w700),
                       ),
                       8.h,
@@ -132,8 +130,11 @@ class _CategoryInfoHotelState extends State<CategoryInfoHotel> {
                             hotel.facilities
                                 .map(
                                   (inx) => Chip(
-                                    backgroundColor: Colors.blue,
-                                    label: Text(inx),
+                                    backgroundColor: Colors.grey,
+                                    label: Text(
+                                      inx,
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                                   ),
                                 )
                                 .toList(),
@@ -252,7 +253,6 @@ class _CategoryInfoHotelState extends State<CategoryInfoHotel> {
                             "send_comment".tr(context: context),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
                               letterSpacing: 2,
                             ),
                           ),
@@ -261,10 +261,7 @@ class _CategoryInfoHotelState extends State<CategoryInfoHotel> {
                       ] else ...[
                         Text(
                           "already_reviewed".tr(context: context),
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontStyle: FontStyle.italic,
-                          ),
+                          style: TextStyle(fontStyle: FontStyle.italic),
                         ),
                         80.h,
                       ],
@@ -304,7 +301,6 @@ class _CategoryInfoHotelState extends State<CategoryInfoHotel> {
             'booking'.tr(context: context),
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.white,
               letterSpacing: 3,
               fontSize: 16,
             ),

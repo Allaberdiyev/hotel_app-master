@@ -1,5 +1,6 @@
 import 'dart:convert';
 import "package:http/http.dart" as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/models/profile_model.dart';
 
 class ProfileViewmodel {
@@ -35,5 +36,10 @@ class ProfileViewmodel {
       uri,
       body: jsonEncode(updatedUser.toMap()),
     );
+  }
+
+  Future<void> saveUserLogin(String login) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('user_login', login);
   }
 }

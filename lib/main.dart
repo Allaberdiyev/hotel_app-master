@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           theme: light,
           darkTheme: dark,
-          initialRoute: AppRoutes.login,
+          initialRoute: AppRoutes.spleshScreen,
           routes: AppRouter.appRoutes,
         );
       },

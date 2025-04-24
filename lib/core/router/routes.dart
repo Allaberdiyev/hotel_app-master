@@ -12,4 +12,5 @@ class AppRoutes {
   static const signUp = "/sign-up";
   static const forgotPassword = "/forgotPassword";
   static const userEnterInfo = "/user-enter-info";
+  static const spleshScreen = "/splesh-screen";
 }

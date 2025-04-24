@@ -1,10 +1,12 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hotel_app/features/auth/presentation/views/screens/login_in_screen.dart';
 import 'package:hotel_app/features/profile/presentation/extension/space_extension.dart';
 import 'package:hotel_app/features/profile/presentation/views/screens/bookins_list.dart';
 import 'package:hotel_app/features/profile/presentation/views/screens/profile_screen.dart';
 import 'package:hotel_app/features/profile/presentation/views/screens/splash_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../data/models/profile_model.dart';
 import '../../viewmodels/profile_viewmodel.dart';
 import '../widgets/tile.dart';
@@ -171,10 +173,16 @@ class DrawerWidget extends StatelessWidget {
                 ikon: Icon(Icons.logout),
                 subtitle: "delete_account_and_return_home".tr(context: context),
                 title: "delete_account".tr(context: context),
-                onTap: () {
+                onTap: () async {
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool(
+                    'is_logged_in',
+                    false,
+                  ); // log out bolgandan keyin yana Restart bersa ham category hotelga kirgizmaydi
+
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (ctx) => SplashScreen()),
+                    MaterialPageRoute(builder: (ctx) => LoginInScreen()),
                   );
                 },
               ),

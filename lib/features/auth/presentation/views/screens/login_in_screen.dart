@@ -6,6 +6,7 @@ import 'package:hotel_app/features/auth/presentation/viewmodels/auth_viewmodel.d
 import 'package:hotel_app/features/auth/presentation/views/screens/forgot_password_screen.dart';
 import 'package:hotel_app/features/auth/presentation/views/screens/sign_up_screen.dart';
 import 'package:hotel_app/features/profile/presentation/extension/space_extension.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../data/datasources/auth_remote_datasources.dart';
 
@@ -38,6 +39,10 @@ class _LoginInScreenState extends State<LoginInScreen> {
 
     if (matchedUser.login.isNotEmpty) {
       authViewModel.userInit(matchedUser);
+
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('is_logged_in', true);
+
       Navigator.pushReplacementNamed(context, AppRoutes.categories);
     } else {
       setState(() {

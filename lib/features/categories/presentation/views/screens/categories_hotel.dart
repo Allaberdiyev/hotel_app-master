@@ -37,6 +37,8 @@ class _CategoriesHotelState extends State<CategoriesHotel> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       key: _scaffoldKey,
       drawer: DrawerWidget(),
@@ -89,7 +91,8 @@ class _CategoriesHotelState extends State<CategoriesHotel> {
                         padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          border: Border.all(color: Colors.white),
+                          color: isDark ? Colors.black : Colors.white,
+
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withAlpha(70),

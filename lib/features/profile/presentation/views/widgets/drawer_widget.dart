@@ -22,6 +22,9 @@ class DrawerWidget extends StatelessWidget {
     return FutureBuilder<ProfileModel?>(
       future: viewmodel.getUser(),
       builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return SizedBox.shrink();
+        }
         if (!snapshot.hasData || snapshot.data == null) {
           return Center(child: Text("user_not_found".tr(context: context)));
         }

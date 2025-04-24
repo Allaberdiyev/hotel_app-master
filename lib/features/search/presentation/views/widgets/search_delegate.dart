@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hotel_app/core/router/routes.dart';
+import 'package:hotel_app/features/categories/presentation/views/screens/category_info_hotel.dart';
 import 'package:hotel_app/features/search/data/models/hotel_model.dart';
 import 'package:hotel_app/features/search/presentation/viewmodels/filter_viewmodel.dart';
 import 'package:hotel_app/features/search/presentation/viewmodels/search_viewmodel.dart';
@@ -73,7 +74,7 @@ class SearchViewDelegate extends SearchDelegate<HotelModel> {
               hotel.facilities.map((e) => e.toLowerCase()).toList();
 
           final name = hotel.name.toLowerCase().contains(query.toLowerCase());
-          final rating = hotel.rating >= filter.selectRating.toInt();
+          final rating = hotel.rating <= filter.selectRating.toInt();
 
           final address = hotel.address.toLowerCase().contains(
             query.toLowerCase(),
@@ -120,73 +121,83 @@ class SearchViewDelegate extends SearchDelegate<HotelModel> {
       itemCount: suggestionList.length,
       itemBuilder: (context, index) {
         final hotel = suggestionList[index];
-        return Stack(
-          children: [
-            Container(
-              padding: EdgeInsets.all(5),
-              margin: EdgeInsets.all(10),
-              width: double.infinity,
-              height: 80,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 2,
-                    color: Colors.black.withValues(alpha: 0.2),
-                    offset: Offset(2, 4),
-                    blurStyle: BlurStyle.normal,
-                  ),
-                ],
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CategoryInfoHotel(hotel: hotel),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    spacing: 10,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CarouselSliderWidget(imageList: hotel.image),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextItem(
-                            text: hotel.name,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          TextItem(
-                            text: hotel.address,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              right: 10,
-              top: 10,
-              child: Container(
-                margin: EdgeInsets.all(0),
-
-                padding: EdgeInsets.symmetric(horizontal: 5),
-                height: 30,
+            );
+          },
+          child: Stack(
+            children: [
+              Container(
+                padding: EdgeInsets.all(5),
+                margin: EdgeInsets.all(10),
+                width: double.infinity,
+                height: 80,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
-                  color: Colors.black,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(5),
-                    bottomLeft: Radius.circular(5),
-                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 2,
+                      color: Colors.black.withValues(alpha: 0.2),
+                      offset: Offset(2, 4),
+                      blurStyle: BlurStyle.normal,
+                    ),
+                  ],
                 ),
-                child: RatingWidget(rating: hotel.rating.toInt()),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      spacing: 10,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CarouselSliderWidget(imageList: hotel.image),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            TextItem(
+                              text: hotel.name,
+                              fontWeight: FontWeight.w700,
+                            ),
+                            TextItem(
+                              text: hotel.address,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              Positioned(
+                right: 10,
+                top: 10,
+                child: Container(
+                  margin: EdgeInsets.all(0),
+
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  height: 30,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    color: Colors.black,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(5),
+                      bottomLeft: Radius.circular(5),
+                    ),
+                  ),
+                  child: RatingWidget(rating: hotel.rating.toInt()),
+                ),
+              ),
+            ],
+          ),
         );
       },
     );

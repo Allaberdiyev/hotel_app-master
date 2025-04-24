@@ -25,17 +25,20 @@ class HotelModel {
     required this.reviews,
   });
 
-  factory HotelModel.fromJson({required Map<String, dynamic> json, String? id}) {
+  factory HotelModel.fromJson({
+    required Map<String, dynamic> json,
+    String? id,
+  }) {
     return HotelModel(
       id: id,
-      name: json['name'],
-      address: json['address'],
-      description: json['description'],
-      facilities: List<String>.from(json['facilities']),
-      image: List<String>.from(json['image']),
-      price: json['price'],
-      rating: (json['rating'] as num).toDouble(),
-      type: List<String>.from(json['type']),
+      name: json['name'] ?? '',
+      address: json['address'] ?? '',
+      description: json['description'] ?? '',
+      facilities: (json['facilities'] as List?)?.cast<String>() ?? [],
+      image: (json['image'] as List?)?.cast<String>() ?? [],
+      price: json['price'] ?? 0,
+      rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
+      type: (json['type'] as List?)?.cast<String>() ?? [],
       reviews:
           (json['review'] as Map<String, dynamic>?)?.values
               .map((e) => ReviewModel.fromJson(e))

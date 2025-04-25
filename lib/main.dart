@@ -15,8 +15,8 @@ void main() async {
       child: EasyLocalization(
         supportedLocales: [Locale("en"), Locale("ru"), Locale("uz")],
         path: "translations",
-        fallbackLocale: Locale("uz"),
-        startLocale: Locale('uz'),
+        fallbackLocale: Locale("en"),
+        startLocale: Locale('en'),
         child: MyApp(),
       ),
     ),

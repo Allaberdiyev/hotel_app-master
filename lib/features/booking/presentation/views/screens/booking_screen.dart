@@ -25,7 +25,7 @@ class BookingScreen extends StatefulWidget {
 
 class _BookingScreenState extends State<BookingScreen> {
   final BookingViewModel viewModel = BookingViewModel();
-  String selectedType = "Premium";
+  String selectedType = "premium".tr();
   int basePrice = 500;
 
   bool isPayment = false;

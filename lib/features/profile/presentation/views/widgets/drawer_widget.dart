@@ -18,6 +18,7 @@ class DrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewmodel = ProfileViewmodel();
     bool isCash = false;
+    String selectedLanguageCode = context.locale.languageCode;
 
     return FutureBuilder<ProfileModel?>(
       future: viewmodel.getUser(),
@@ -178,10 +179,8 @@ class DrawerWidget extends StatelessWidget {
                 title: "delete_account".tr(context: context),
                 onTap: () async {
                   final prefs = await SharedPreferences.getInstance();
-                  await prefs.setBool(
-                    'is_logged_in',
-                    false,
-                  ); // log out bolgandan keyin yana Restart bersa ham category hotelga kirgizmaydi
+                  await prefs.setBool('is_logged_in', false);
+                  // log out bolgandan keyin yana Restart bersa ham category hotelga kirgizmaydi
 
                   Navigator.pushReplacement(
                     context,
@@ -190,7 +189,7 @@ class DrawerWidget extends StatelessWidget {
                 },
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -199,14 +198,30 @@ class DrawerWidget extends StatelessWidget {
                       builder: (context, setState) {
                         bool isEnglish = context.locale.languageCode == 'en';
 
-                        return Switch(
-                          value: isEnglish,
+                        return DropdownButton<String>(
+                          value: selectedLanguageCode,
                           onChanged: (value) {
-                            final newLocale =
-                                value ? Locale('en') : Locale('uz');
-                            context.setLocale(newLocale);
-                            setState(() {});
+                            if (value != null) {
+                              context.setLocale(Locale(value));
+                              setState(() {
+                                selectedLanguageCode = value;
+                              });
+                            }
                           },
+                          items: [
+                            DropdownMenuItem(
+                              value: 'en',
+                              child: Text('English'),
+                            ),
+                            DropdownMenuItem(
+                              value: 'ru',
+                              child: Text('Русский'),
+                            ),
+                            DropdownMenuItem(
+                              value: 'uz',
+                              child: Text('Oʻzbekcha'),
+                            ),
+                          ],
                         );
                       },
                     ),
